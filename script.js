@@ -27,11 +27,33 @@ let player = playerChoice();
 let computer = getComputerChoice(weapons);
 let playerScore = 0;
 let computerScore = 0;
+let gameLoop = true;
 
-console.log(`Player chose ${player}`);
-console.log(`Computer chose ${computer}`);
+while (gameLoop) {
+    let player = playerChoice();
+    let computer = getComputerChoice(weapons);
 
-compareChoices(player, computer);
+    console.log(`Player chose ${player}`);
+    console.log(`Computer chose ${computer}`);
 
-console.log(`Player Score: ${playerScore}`);
-console.log(`Computer Score: ${computerScore}`);
+    compareChoices(player, computer);
+
+    console.log(`Player Score: ${playerScore}`);
+    console.log(`Computer Score: ${computerScore}`);
+
+    if (playerScore + computerScore == 3) {
+        if (playerScore > computerScore) {
+            console.log("You won best out of 3!");
+        } else {
+            console.log("You lost best out of 3!");
+        }
+
+        playerScore = 0;
+        computerScore = 0;
+
+        let playAgainResponse = prompt("Do you want to play again? (y/n)");
+        if (playAgainResponse.toLowerCase() != "y") {
+            gameLoop = false;
+        }
+    }
+}
